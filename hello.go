@@ -13,7 +13,8 @@ import (
 func main(){
 	nb := rand.Intn(100)
 	fmt.Println("Choose a number : ")
-	for i:=0 ; i<20 ; i++{
+	succes := false
+	for i:=0 ; i<10 ; i++{
 		input , err1 := bufio.NewReader(os.Stdin).ReadString('\n')
 		input = strings.TrimSpace(input)
 		test , err2 := strconv.ParseFloat(input,64)
@@ -24,11 +25,16 @@ func main(){
 		} else {
 			if test == float64(nb) {
 				fmt.Println("You win !")
+				succes = true
 			} else if test < float64(nb) {
 				fmt.Println("Too Low")
 			} else {
 				fmt.Println("Too High")
 			}
 		}
+	}
+	if !succes {
+		fmt.Println("You lose !")
+		fmt.Println("The number was : ",nb)
 	}
 }
