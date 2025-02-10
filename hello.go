@@ -1,5 +1,5 @@
 package main
-
+// import statement
 import (
 	"fmt"
 	"math/rand"
@@ -8,12 +8,22 @@ import (
 	"os"
 	"log"
 	"strconv"
+	"time"
 )
-
+/*
+ The Main function of the game
+*/
 func main(){
+	// For Seed the random number
+	seconds := time.Now().Unix()
+	rand.NewSource(seconds)
+	// Generate a random number
 	nb := rand.Intn(100)
+	// let the user choose a number
 	fmt.Println("Choose a number : ")
+	// initialize the variable succes to false ( he/she didn't find the number)
 	succes := false
+	// loop for 10 times to let the user choose a number
 	for i:=0 ; i<10 ; i++{
 		input , err1 := bufio.NewReader(os.Stdin).ReadString('\n')
 		input = strings.TrimSpace(input)
@@ -33,6 +43,7 @@ func main(){
 			}
 		}
 	}
+	// if the user didn't find the number after the 10 attempts
 	if !succes {
 		fmt.Println("You lose !")
 		fmt.Println("The number was : ",nb)
